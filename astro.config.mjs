@@ -6,5 +6,6 @@ import react from '@astrojs/react';
 export default defineConfig({
   output: 'static', // Importante para Netlify
   site: 'https://tu-sitio.netlify.app', // Opcional, actualízalo después
+  base: '/', // Asegúrate de que esté así
   integrations: [react()],
 });
