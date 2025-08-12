@@ -1,11 +1,48 @@
 ---
-import Welcome from '../components/Welcome.astro';
+// src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Skills from '../components/Skills.astro';
+import Projects from '../components/Projects.astro';
+import Contact from '../components/Contact.astro';
 ---
 
 <Layout>
-	<Welcome />
+  <!-- Componentes Astro sin directivas de hidratación -->
+  <Navbar />
+  <Hero />
+  <About />
+  <Skills />
+  <Projects />
+  <Contact />
 </Layout>
+
+<style is:global>
+  /* Estilos globales */
+  :root {
+    --primary-color: #DAA520;
+    --secondary-color: #FFD700;
+    --dark-bg: #0f0f0f;
+    --medium-bg: #1a1a1a;
+    --light-text: #e5e5e5;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+    background: linear-gradient(135deg, var(--dark-bg) 0%, var(--medium-bg) 25%, #2d1810 50%, #1a0f0a 75%, var(--dark-bg) 100%);
+    color: var(--light-text);
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Asegúrate de que el contenido no quede detrás del navbar */
+  main {
+    padding-top: 80px; /* Ajusta según la altura de tu navbar */
+  }
+</style>

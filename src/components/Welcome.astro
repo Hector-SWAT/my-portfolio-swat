@@ -1,210 +1,825 @@
 ---
-import astroLogo from '../assets/astro.svg';
 import background from '../assets/background.svg';
 ---
 
-<div id="container">
-	<img id="background" src={background.src} alt="" fetchpriority="high" />
-	<main>
-		<section id="hero">
-			<a href="https://astro.build"
-				><img src={astroLogo.src} width="115" height="48" alt="Astro Homepage" /></a
-			>
-			<h1>
-				To get started, open the <code><pre>src/pages</pre></code> directory in your project.
-			</h1>
-			<section id="links">
-				<a class="button" href="https://docs.astro.build">Read our docs</a>
-				<a href="https://astro.build/chat"
-					>Join our Discord <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"
-						><path
-							fill="currentColor"
-							d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15ZM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69Zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69Z"
-						></path></svg
-					>
-				</a>
-			</section>
-		</section>
-	</main>
-
-	<a href="https://astro.build/blog/astro-5/" id="news" class="box">
-		<svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg"
-			><path
-				d="M24.667 12c1.333 1.414 2 3.192 2 5.334 0 4.62-4.934 5.7-7.334 12C18.444 28.567 18 27.456 18 26c0-4.642 6.667-7.053 6.667-14Zm-5.334-5.333c1.6 1.65 2.4 3.43 2.4 5.333 0 6.602-8.06 7.59-6.4 17.334C13.111 27.787 12 25.564 12 22.666c0-4.434 7.333-8 7.333-16Zm-6-5.333C15.111 3.555 16 5.556 16 7.333c0 8.333-11.333 10.962-5.333 22-3.488-.774-6-4-6-8 0-8.667 8.666-10 8.666-20Z"
-				fill="#111827"></path></svg
-		>
-		<h2>What's New in Astro 5.0?</h2>
-		<p>
-			From content layers to server islands, click to learn more about the new features and
-			improvements in Astro 5.0
-		</p>
-	</a>
+<div id="container" class="font-sans min-h-screen relative">
+  <!-- Fondo oscuro y dorado personalizado -->
+  <div 
+    id="custom-background"
+    class="fixed top-0 left-0 w-full h-full -z-10"
+  ></div>
+  
+  <main class="flex flex-col items-center justify-center min-h-screen px-6 md:px-16 text-center relative z-10">
+    <!-- Logo en círculo centrado -->
+    <div class="logo-container mb-8">
+      <img
+        src="src/assets/logo-swat.png"
+        alt="Héctor Hernández"
+        class="logo-image mx-auto"
+      />
+    </div>
+    
+    <h1 class="title-gradient text-6xl md:text-7xl font-bold mb-8 text-center">
+      Hola, soy Héctor Hernández
+    </h1>
+    
+    <p class="text-xl md:text-2xl max-w-3xl mb-12 text-description text-center mx-auto leading-relaxed">
+      Programador y especialista en <span class="highlight-text">ciberseguridad</span>.<br />
+      Me apasiona crear soluciones seguras y eficientes.
+    </p>
+    
+    <div class="flex gap-4 justify-center flex-wrap items-center">
+      <a
+        href="src/components/DownloadCV.tsx"
+        download
+        class="btn-primary text-center"
+      >
+        Descargar mi CV
+      </a>
+      <a
+        href="#proyectos"
+        class="btn-secondary text-center"
+      >
+        Ver proyectos
+      </a>
+      <a
+        href="#contacto"
+        class="btn-tertiary text-center"
+      >
+        Contacto
+      </a>
+    </div>
+    <!-- Indicador de scroll -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div class="w-1 h-10 bg-gradient-to-b from-yellow-400 to-transparent rounded-full"></div>
+    </div>
+  </main>
 </div>
 
+<!-- Sección Sobre Mí -->
+<section id="sobre-mi" class="section-container">
+  <div class="section-content">
+    <h2 class="section-title">Sobre Mí</h2>
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="about-text">
+        <p class="text-lg mb-6 text-gray-300 leading-relaxed">
+          Soy un desarrollador apasionado con más de <span class="highlight-text">5 años de experiencia</span> 
+          en el mundo de la programación y la ciberseguridad. Mi enfoque principal es crear soluciones 
+          digitales seguras y eficientes.
+        </p>
+        <p class="text-lg mb-6 text-gray-300 leading-relaxed">
+          Especializado en <span class="highlight-text">desarrollo web full-stack</span> y 
+          <span class="highlight-text">auditorías de seguridad</span>, siempre busco mantenerme 
+          actualizado con las últimas tecnologías y mejores prácticas del sector.
+        </p>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Proyectos</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">3+</span>
+            <span class="stat-label">Años Exp.</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Dedicación</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-image">
+        <div class="image-container">
+          <div class="image-bg"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección Habilidades -->
+<section id="habilidades" class="section-container">
+  <div class="section-content">
+    <h2 class="section-title">Habilidades</h2>
+    <div class="skills-grid">
+      <!-- Frontend -->
+      <div class="skill-category">
+        <h3 class="category-title">Frontend</h3>
+        <div class="skills-list">
+          <div class="skill-item">
+            <span class="skill-name">JavaScript</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 90%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">React</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 85%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">HTML/CSS</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 95%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Backend -->
+      <div class="skill-category">
+        <h3 class="category-title">Backend</h3>
+        <div class="skills-list">
+          <div class="skill-item">
+            <span class="skill-name">Node.js</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 80%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Python</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 75%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">PHP</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 70%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Ciberseguridad -->
+      <div class="skill-category">
+        <h3 class="category-title">Ciberseguridad</h3>
+        <div class="skills-list">
+          <div class="skill-item">
+            <span class="skill-name">Pentesting</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 85%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">OWASP</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 80%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Análisis Forense</span>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 75%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección Proyectos -->
+<section id="proyectos" class="section-container">
+  <div class="section-content">
+    <h2 class="section-title">Proyectos</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-image">
+          <div class="project-overlay">
+            <div class="project-links">
+              <a href="#" class="project-link">Ver Demo</a>
+              <a href="#" class="project-link">Código</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3 class="project-title">Sistema de Gestión Seguro</h3>
+          <p class="project-description">
+            Aplicación web full-stack con autenticación avanzada y auditoría de seguridad completa.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">MongoDB</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-image">
+          <div class="project-overlay">
+            <div class="project-links">
+              <a href="#" class="project-link">Ver Demo</a>
+              <a href="#" class="project-link">Código</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3 class="project-title">Herramienta de Pentesting</h3>
+          <p class="project-description">
+            Suite de herramientas personalizadas para análisis de vulnerabilidades web.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Flask</span>
+            <span class="tech-tag">SQLite</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-image">
+          <div class="project-overlay">
+            <div class="project-links">
+              <a href="#" class="project-link">Ver Demo</a>
+              <a href="#" class="project-link">Código</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3 class="project-title">Dashboard Analytics</h3>
+          <p class="project-description">
+            Panel de control interactivo para monitoreo de seguridad en tiempo real.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Vue.js</span>
+            <span class="tech-tag">D3.js</span>
+            <span class="tech-tag">Express</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección Contacto -->
+<section id="contacto" class="section-container">
+  <div class="section-content">
+    <h2 class="section-title">Contacto</h2>
+    <div class="grid md:grid-cols-2 gap-12">
+      <div class="contact-info">
+        <h3 class="text-2xl font-bold mb-6 text-yellow-400">¡Trabajemos juntos!</h3>
+        <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+          Estoy siempre interesado en nuevos proyectos y oportunidades. 
+          Si tienes una idea o simplemente quieres saludar, no dudes en contactarme.
+        </p>
+        
+        <div class="contact-methods">
+          <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <div class="contact-details">
+              <span class="contact-label">Email</span>
+              <span class="contact-value">hector@ejemplo.com</span>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <div class="contact-details">
+              <span class="contact-label">Teléfono</span>
+              <span class="contact-value">+52 123 456 7890</span>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-details">
+              <span class="contact-label">Ubicación</span>
+              <span class="contact-value">México</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-form-container">
+        <form class="contact-form">
+          <div class="form-group">
+            <input type="text" placeholder="Tu nombre" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Tu email" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Asunto" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <textarea placeholder="Tu mensaje" class="form-textarea" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Enviar Mensaje</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+
 <style>
-	#background {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		filter: blur(100px);
-	}
+  /* Scroll suave */
+  html {
+    scroll-behavior: smooth;
+  }
 
-	#container {
-		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-		height: 100%;
-	}
+  /* === ESTILOS PARA SECCIONES === */
+  .section-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+    padding: 100px 0;
+    position: relative;
+  }
 
-	main {
-		height: 100%;
-		display: flex;
-		justify-content: center;
-	}
+  .section-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 10% 20%, rgba(218, 165, 32, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
 
-	#hero {
-		display: flex;
-		align-items: start;
-		flex-direction: column;
-		justify-content: center;
-		padding: 16px;
-	}
+  .section-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+  }
 
-	h1 {
-		font-size: 22px;
-		margin-top: 0.25em;
-	}
+  .section-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 4rem;
+    background: linear-gradient(45deg, #FFD700, #DAA520, #B8860B);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-	#links {
-		display: flex;
-		gap: 16px;
-	}
+  /* === SOBRE MÍ === */
+  .about-text {
+    color: #e5e5e5;
+  }
 
-	#links a {
-		display: flex;
-		align-items: center;
-		padding: 10px 12px;
-		color: #111827;
-		text-decoration: none;
-		transition: color 0.2s;
-	}
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
 
-	#links a:hover {
-		color: rgb(78, 80, 86);
-	}
+  .stat-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(218, 165, 32, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(218, 165, 32, 0.3);
+  }
 
-	#links a svg {
-		height: 1em;
-		margin-left: 8px;
-	}
+  .stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #DAA520;
+    margin-bottom: 0.5rem;
+  }
 
-	#links a.button {
-		color: white;
-		background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
-		box-shadow:
-			inset 0 0 0 1px rgba(255, 255, 255, 0.12),
-			inset 0 -2px 0 rgba(0, 0, 0, 0.24);
-		border-radius: 10px;
-	}
+  .stat-label {
+    font-size: 1rem;
+    color: #e5e5e5;
+    font-weight: 600;
+  }
 
-	#links a.button:hover {
-		color: rgb(230, 230, 230);
-		box-shadow: none;
-	}
+  .about-image .image-container {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+  }
 
-	pre {
-		font-family:
-			ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono',
-			monospace;
-		font-weight: normal;
-		background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		margin: 0;
-	}
+  .image-bg {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #DAA520, #FFD700, #B8860B);
+    opacity: 0.3;
+  }
 
-	h2 {
-		margin: 0 0 1em;
-		font-weight: normal;
-		color: #111827;
-		font-size: 20px;
-	}
+  /* === HABILIDADES === */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+  }
 
-	p {
-		color: #4b5563;
-		font-size: 16px;
-		line-height: 24px;
-		letter-spacing: -0.006em;
-		margin: 0;
-	}
+  .skill-category {
+    background: rgba(26, 26, 26, 0.8);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(218, 165, 32, 0.2);
+  }
 
-	code {
-		display: inline-block;
-		background:
-			linear-gradient(66.77deg, #f3cddd 0%, #f5cee7 100%) padding-box,
-			linear-gradient(155deg, #d83333 0%, #f041ff 18%, #f5cee7 45%) border-box;
-		border-radius: 8px;
-		border: 1px solid transparent;
-		padding: 6px 8px;
-	}
+  .category-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #DAA520;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
 
-	.box {
-		padding: 16px;
-		background: rgba(255, 255, 255, 1);
-		border-radius: 16px;
-		border: 1px solid white;
-	}
+  .skill-item {
+    margin-bottom: 1.5rem;
+  }
 
-	#news {
-		position: absolute;
-		bottom: 16px;
-		right: 16px;
-		max-width: 300px;
-		text-decoration: none;
-		transition: background 0.2s;
-		backdrop-filter: blur(50px);
-	}
+  .skill-name {
+    display: block;
+    color: #e5e5e5;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
 
-	#news:hover {
-		background: rgba(255, 255, 255, 0.55);
-	}
+  .skill-bar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
 
-	@media screen and (max-height: 368px) {
-		#news {
-			display: none;
-		}
-	}
+  .skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #DAA520, #FFD700);
+    border-radius: 4px;
+    transition: width 2s ease-in-out;
+  }
 
-	@media screen and (max-width: 768px) {
-		#container {
-			display: flex;
-			flex-direction: column;
-		}
+  /* === PROYECTOS === */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
 
-		#hero {
-			display: block;
-			padding-top: 10%;
-		}
+  .project-card {
+    background: rgba(26, 26, 26, 0.8);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(218, 165, 32, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
 
-		#links {
-			flex-wrap: wrap;
-		}
+  .project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(218, 165, 32, 0.2);
+  }
 
-		#links a.button {
-			padding: 14px 18px;
-		}
+  .project-image {
+    height: 200px;
+    background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+    position: relative;
+    overflow: hidden;
+  }
 
-		#news {
-			right: 16px;
-			left: 16px;
-			bottom: 2.5rem;
-			max-width: 100%;
-		}
+  .project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
 
-		h1 {
-			line-height: 1.5;
-		}
-	}
+  .project-card:hover .project-overlay {
+    opacity: 1;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .project-link {
+    padding: 0.5rem 1rem;
+    background: #DAA520;
+    color: #1a1a1a;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+
+  .project-link:hover {
+    background: #FFD700;
+  }
+
+  .project-info {
+    padding: 1.5rem;
+  }
+
+  .project-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #DAA520;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-description {
+    color: #e5e5e5;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tech-tag {
+    padding: 0.25rem 0.75rem;
+    background: rgba(218, 165, 32, 0.2);
+    color: #DAA520;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  /* === CONTACTO === */
+  .contact-info {
+    color: #e5e5e5;
+  }
+
+  .contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: 12px;
+    border: 1px solid rgba(218, 165, 32, 0.2);
+  }
+
+  .contact-icon {
+    font-size: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(218, 165, 32, 0.2);
+    border-radius: 50%;
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-label {
+    font-weight: 600;
+    color: #DAA520;
+    font-size: 0.875rem;
+  }
+
+  .contact-value {
+    color: #e5e5e5;
+    font-size: 1rem;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-input,
+  .form-textarea {
+    padding: 1rem;
+    background: rgba(26, 26, 26, 0.8);
+    border: 1px solid rgba(218, 165, 32, 0.3);
+    border-radius: 8px;
+    color: #e5e5e5;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: #DAA520;
+  }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: rgba(229, 229, 229, 0.6);
+  }
+
+  .form-submit {
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, #DAA520, #FFD700);
+    color: #1a1a1a;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .form-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(218, 165, 32, 0.4);
+  }
+
+  /* Tus estilos originales */
+  #background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: blur(100px);
+  }
+
+  #container {
+    font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Fondo oscuro y dorado más fuerte */
+  #container {
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 25%, #2d1810 50%, #1a0f0a 75%, #0f0f0f 100%);
+    color: #e5e5e5;
+  }
+
+  #custom-background {
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 25%, #2d1810 50%, #1a0f0a 75%, #0f0f0f 100%);
+  }
+
+  #custom-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 20%, rgba(218, 165, 32, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 40%),
+      radial-gradient(circle at 60% 40%, rgba(184, 134, 11, 0.1) 0%, transparent 50%);
+  }
+
+  /* Logo en círculo centrado - MÁS GRANDE */
+  .logo-container {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto;
+  }
+
+  .logo-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #DAA520;
+    box-shadow: 0 0 30px rgba(218, 165, 32, 0.4);
+    transition: transform 0.3s ease;
+  }
+
+  .logo-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(218, 165, 32, 0.5);
+  }
+
+  /* Título con gradiente dorado */
+  .title-gradient {
+    background: linear-gradient(45deg, #FFD700, #DAA520, #B8860B);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Texto descriptivo */
+  .text-description {
+    color: #e5e5e5;
+  }
+
+  .highlight-text {
+    color: #DAA520;
+    font-weight: 600;
+  }
+
+  /* Botones estilo mejorado - MÁS GRANDES */
+  .btn-primary {
+    padding: 16px 32px;
+    background: linear-gradient(45deg, #DAA520, #FFD700);
+    color: #1a1a1a;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(218, 165, 32, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(218, 165, 32, 0.5);
+    background: linear-gradient(45deg, #FFD700, #DAA520);
+  }
+
+  .btn-secondary {
+    padding: 16px 32px;
+    border: 3px solid #DAA520;
+    color: #DAA520;
+    background: transparent;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    background: #DAA520;
+    color: #1a1a1a;
+    transform: translateY(-3px);
+  }
+
+  .btn-tertiary {
+    padding: 16px 32px;
+    background: rgba(45, 45, 45, 0.8);
+    border: 2px solid #666;
+    color: #e5e5e5;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-tertiary:hover {
+    border-color: #DAA520;
+    color: #DAA520;
+    transform: translateY(-3px);
+  }
+
+  /* Responsive - TAMAÑOS AJUSTADOS */
+  @media (max-width: 768px) {
+    .flex.gap-6 {
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 350px;
+    }
+    
+    .logo-image {
+      width: 140px;
+      height: 140px;
+    }
+    
+    .logo-container {
+      width: 140px;
+      height: 140px;
+    }
+    
+    .title-gradient {
+      font-size: 3rem;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-tertiary {
+      padding: 14px 28px;
+      font-size: 1rem;
+    }
+  }
 </style>

@@ -1,0 +1,224 @@
+---
+// src/components/Navbar.astro
+import logo from 'src/assets/logo-swat.png';
+---
+
+<nav class="minecraft-nav">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <img src=src/assets/logo-swat.png alt="Logo" class="pixel-logo" width="40" height="40" />
+      <span class="pixel-text">HÉCTOR H.</span>
+    </div>
+    
+    <div class="nav-links" id="navLinks">
+      <a href="#inicio" class="nav-link pixel-button">INICIO</a>
+      <a href="#sobre-mi" class="nav-link pixel-button">SOBRE MÍ</a>
+      <a href="#habilidades" class="nav-link pixel-button">HABILIDADES</a>
+      <a href="#proyectos" class="nav-link pixel-button">PROYECTOS</a>
+      <a href="#contacto" class="nav-link pixel-button">CONTACTO</a>
+    </div>
+    
+    <div class="social-icons">
+      <a href="https://github.com/Hector-SWAT" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="www.linkedin.com/in/hector-hernandez-7638a9264" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.youtube.com/@swat_exe" class="social-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.tiktok.com/@swat.iso?_t=ZS-8ynof6otMut&_r=1" class="social-icon" title="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </button>
+  </div>
+</nav>
+
+<style>
+  .minecraft-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+    border-bottom: 4px solid var(--primary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    padding: 0.5rem 1rem;
+  }
+
+  .nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .pixel-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    border: 2px solid var(--primary-color);
+  }
+
+  .pixel-text {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    text-shadow: 2px 2px 0 #000;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .pixel-button {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    color: var(--secondary-color);
+    text-decoration: none;
+    padding: 0.8rem 1.2rem;
+    background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+    border-top: 3px solid #666;
+    border-left: 3px solid #666;
+    border-right: 3px solid #333;
+    border-bottom: 3px solid #333;
+    text-shadow: 2px 2px 0 #000;
+    transition: all 0.1s ease;
+    position: relative;
+    display: inline-block;
+  }
+
+  .pixel-button:hover {
+    background: linear-gradient(135deg, #3a3a3a 0%, #2a2a2a 100%);
+    color: #FFF;
+    transform: translate(2px, 2px);
+    border-top: 3px solid #555;
+    border-left: 3px solid #555;
+    border-right: 3px solid #222;
+    border-bottom: 3px solid #222;
+  }
+
+  .pixel-button:active {
+    transform: translate(4px, 4px);
+    border-top: 3px solid #333;
+    border-left: 3px solid #333;
+    border-right: 3px solid #111;
+    border-bottom: 3px solid #111;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .social-icon {
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background: rgba(218, 165, 32, 0.1);
+    border: 1px solid rgba(218, 165, 32, 0.3);
+  }
+
+  .social-icon:hover {
+    color: #FFF;
+    background: rgba(218, 165, 32, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .hamburger .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--secondary-color);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 992px) {
+    .nav-links {
+      position: fixed;
+      top: 70px;
+      left: -100%;
+      width: 100%;
+      height: calc(100vh - 70px);
+      background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 2rem 0;
+      gap: 2rem;
+      transition: left 0.3s ease;
+      z-index: 999;
+    }
+
+    .nav-links.active {
+      left: 0;
+    }
+
+    .pixel-button {
+      font-size: 1rem;
+      padding: 1rem 2rem;
+    }
+
+    .hamburger {
+      display: block;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+  }
+</style>
+
+<script is:inline>
+  // Script para el menú hamburguesa
+  document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    
+    // Cerrar el menú al hacer clic en un enlace
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+  });
+</script>
