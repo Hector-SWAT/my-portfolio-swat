@@ -7,7 +7,8 @@ const projects = [
     tags: ["Python", "Bash", "OWASP", "Seguridad Web", "Automatización"],
     demoUrl: "#",
     codeUrl: "https://github.com/Hector-SWAT/web-vuln-scanner",
-    image: "/images/Web-Vulnerability.png"
+    image: "/images/Web-Vulnerability.png",
+    featured: true
   },
   {
     title: "ArchDownloader – Plataforma Segura de Descarga Multiplataforma",
@@ -15,7 +16,8 @@ const projects = [
     tags: ["Bash", "Python", "yt-dlp", "PyQt6", "Multiplataforma"],
     demoUrl: "#",
     codeUrl: "https://github.com/Hector-SWAT/ArchDownloader",
-    image: "/images/ArchDownloader.png"
+    image: "/images/ArchDownloader.png",
+    featured: false
   },
   {
     title: "Plataforma Web Segura para Restaurantes – La Chichipinga",
@@ -23,7 +25,8 @@ const projects = [
     tags: ["HTML", "CSS", "TypeScript", "JavaScript", "Responsive Design"],
     demoUrl: "#",
     codeUrl: "https://github.com/Hector-SWAT/Web-Hamburger",
-    image: "/images/web-chichipinga.png"
+    image: "/images/web-chichipinga.png",
+    featured: true
   },
   {
     title: "API de Seguridad",
@@ -31,10 +34,10 @@ const projects = [
     tags: ["Go", "gRPC", "Redis", "Kubernetes", "OAuth2"],
     demoUrl: "#",
     codeUrl: "https://github.com/Hector-SWAT/Automated-IP-Detection-Blocker",
-    image: "/images/logo-app.png"
+    image: "/images/logo-app.png",
+    featured: false
   }
 ];
-
 ---
 
 <section id="proyectos" class="projects-section">
@@ -43,7 +46,11 @@ const projects = [
     
     <div class="projects-grid">
       {projects.map((project, index) => (
-        <article class="project-card" data-aos="fade-up" data-aos-delay={index * 100}>
+        <article 
+          class={`project-card ${project.featured ? 'featured' : ''}`}
+          data-direction={index % 2 === 0 ? 'left' : 'right'}
+          data-index={index}
+        >
           <div class="project-image-container">
             <img 
               src={project.image} 
@@ -52,25 +59,38 @@ const projects = [
               loading="lazy"
               width="600"
               height="400"
+              decoding="async"
             />
             <div class="project-overlay">
-              <div class="project-links">
-                <a 
-                  href={project.demoUrl} 
-                  class="project-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fas fa-external-link-alt"></i> Demo
-                </a>
-                <a 
-                  href={project.codeUrl} 
-                  class="project-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fab fa-github"></i> Código
-                </a>
+              <div class="overlay-content">
+                <div class="project-description-overlay">
+                  <p>{project.description}</p>
+                </div>
+                <div class="project-links">
+                  {project.demoUrl !== "#" && (
+                    <a 
+                      href={project.demoUrl} 
+                      class="project-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Ver demo de ${project.title}`}
+                    >
+                      <i class="fas fa-external-link-alt"></i> Demo
+                    </a>
+                  )}
+                  <a 
+                    href={project.codeUrl} 
+                    class="project-link github-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Ver código de ${project.title} en GitHub`}
+                  >
+                    <i class="fab fa-github"></i> Código
+                  </a>
+                </div>
+                <div class="see-more-icon" aria-hidden="true">
+                  <i class="fas fa-eye"></i>
+                </div>
               </div>
             </div>
           </div>
@@ -81,7 +101,7 @@ const projects = [
             
             <div class="project-tech">
               {project.tags.map(tag => (
-                <span class="tech-tag">{tag}</span>
+                <span class="tech-tag" aria-label={`Tecnología: ${tag}`}>{tag}</span>
               ))}
             </div>
           </div>
@@ -96,53 +116,61 @@ const projects = [
     padding: 6rem 1rem;
     background: linear-gradient(
       135deg, 
-      rgba(15, 15, 15, 0.95) 0%, 
-      rgba(26, 26, 26, 0.98) 100%
+      var(--dark-bg, #0f0f0f) 0%, 
+      var(--medium-bg, #1a1a1a) 100%
     );
     position: relative;
     overflow: hidden;
+    isolation: isolate;
   }
 
   .projects-section::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: 
       radial-gradient(circle at 70% 20%, rgba(218, 165, 32, 0.05) 0%, transparent 40%),
       radial-gradient(circle at 30% 80%, rgba(255, 215, 0, 0.03) 0%, transparent 40%);
     pointer-events: none;
+    z-index: -1;
   }
 
   .projects-container {
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
-    z-index: 1;
   }
 
   .section-title {
-    font-size: 2.8rem;
+    font-size: clamp(2rem, 5vw, 2.8rem);
     font-weight: 800;
     text-align: center;
     margin-bottom: 4rem;
-    color: #e5e5e5;
+    color: var(--light-text, #e5e5e5);
     position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .section-title.animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s ease, transform 0.8s ease;
   }
 
   .section-title .highlight {
-    background: linear-gradient(45deg, #FFD700, #DAA520);
+    background: linear-gradient(45deg, var(--secondary-color, #FFD700), var(--primary-color, #DAA520));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    position: relative;
   }
 
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
     gap: 2rem;
+    margin: 0 auto;
   }
 
   .project-card {
@@ -155,6 +183,34 @@ const projects = [
     display: flex;
     flex-direction: column;
     height: 100%;
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+    position: relative;
+    will-change: transform, opacity;
+  }
+
+  .project-card.featured {
+    border: 1px solid rgba(218, 165, 32, 0.3);
+  }
+
+  .project-card.featured::after {
+    content: '★ Destacado';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: linear-gradient(45deg, #FFD700, #DAA520);
+    color: #1a1a1a;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    z-index: 2;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .project-card.animate-in {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
   }
 
   .project-card:hover {
@@ -166,7 +222,7 @@ const projects = [
   .project-image-container {
     position: relative;
     overflow: hidden;
-    height: 220px;
+    aspect-ratio: 16/9;
   }
 
   .project-image {
@@ -177,63 +233,110 @@ const projects = [
   }
 
   .project-card:hover .project-image {
-    transform: scale(1.05);
+    transform: scale(1.08);
   }
 
   .project-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 0.3s ease;
-    backdrop-filter: blur(2px);
+    transition: all 0.4s ease;
+    backdrop-filter: blur(3px);
+    padding: 1.5rem;
   }
 
   .project-card:hover .project-overlay {
     opacity: 1;
   }
 
+  .overlay-content {
+    text-align: center;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .project-card:hover .overlay-content {
+    transform: translateY(0);
+  }
+
+  .project-description-overlay {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    max-height: 60%;
+    overflow-y: auto;
+    padding: 0 0.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(218, 165, 32, 0.5) transparent;
+  }
+
+  .project-description-overlay::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .project-description-overlay::-webkit-scrollbar-thumb {
+    background: rgba(218, 165, 32, 0.5);
+    border-radius: 4px;
+  }
+
   .project-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
   }
 
   .project-link {
-    padding: 0.7rem 1.5rem;
-    background: linear-gradient(45deg, #DAA520, #FFD700);
-    color: #1a1a1a;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(45deg, var(--primary-color, #DAA520), var(--secondary-color, #FFD700));
+    color: var(--dark-bg, #1a1a1a);
     text-decoration: none;
     border-radius: 50px;
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     transition: all 0.3s ease;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
+    min-width: 120px;
+    justify-content: center;
   }
 
   .project-link:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(218, 165, 32, 0.4);
-    background: linear-gradient(45deg, #FFD700, #DAA520);
+    background: linear-gradient(45deg, var(--secondary-color, #FFD700), var(--primary-color, #DAA520));
   }
 
-  .project-link:nth-child(2) {
-    background: rgba(26, 26, 26, 0.9);
-    color: #FFD700;
+  .github-link {
+    background: rgba(26, 26, 26, 0.9) !important;
+    color: var(--secondary-color, #FFD700) !important;
     border: 1px solid rgba(218, 165, 32, 0.5);
   }
 
-  .project-link:nth-child(2):hover {
-    background: rgba(218, 165, 32, 0.1);
-    color: #FFF;
+  .github-link:hover {
+    background: rgba(218, 165, 32, 0.1) !important;
+    color: var(--light-text, #FFF) !important;
+  }
+
+  .see-more-icon {
+    color: var(--secondary-color, #FFD700);
+    font-size: 1.5rem;
+    opacity: 0.8;
+    margin-top: auto;
   }
 
   .project-content {
@@ -241,21 +344,23 @@ const projects = [
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    gap: 1rem;
   }
 
   .project-title {
     font-size: 1.4rem;
     font-weight: 700;
-    color: #FFD700;
-    margin-bottom: 1rem;
+    color: var(--secondary-color, #FFD700);
+    margin: 0;
     line-height: 1.3;
   }
 
   .project-description {
     color: rgba(229, 229, 229, 0.8);
-    margin-bottom: 1.5rem;
+    margin: 0;
     line-height: 1.6;
     flex-grow: 1;
+    font-size: 0.95rem;
   }
 
   .project-tech {
@@ -268,7 +373,7 @@ const projects = [
   .tech-tag {
     padding: 0.4rem 0.9rem;
     background: rgba(218, 165, 32, 0.15);
-    color: #DAA520;
+    color: var(--primary-color, #DAA520);
     border-radius: 50px;
     font-size: 0.8rem;
     font-weight: 600;
@@ -278,58 +383,162 @@ const projects = [
 
   .tech-tag:hover {
     background: rgba(218, 165, 32, 0.25);
-    color: #FFD700;
+    color: var(--secondary-color, #FFD700);
     transform: translateY(-2px);
+  }
+
+  /* Animaciones */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { 
+      opacity: 0.6; 
+      box-shadow: 0 0 10px rgba(218, 165, 32, 0.5);
+    }
+    50% { 
+      opacity: 0.9; 
+      box-shadow: 0 0 20px rgba(218, 165, 32, 0.8);
+    }
   }
 
   /* Responsive */
   @media (max-width: 768px) {
+    .projects-section {
+      padding: 4rem 1rem;
+    }
+    
     .section-title {
-      font-size: 2.2rem;
       margin-bottom: 3rem;
     }
     
-    .projects-grid {
-      grid-template-columns: 1fr;
+    .project-card {
+      max-width: 100%;
     }
-    
+
+    .project-card.featured::after {
+      font-size: 0.65rem;
+      top: 0.75rem;
+      right: 0.75rem;
+    }
+
+    .project-content {
+      padding: 1.5rem;
+    }
+
+    .project-title {
+      font-size: 1.2rem;
+    }
+
+    .project-description {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 480px) {
     .project-links {
       flex-direction: column;
-      gap: 1rem;
-      width: 80%;
+      gap: 0.8rem;
     }
     
     .project-link {
-      justify-content: center;
+      width: 100%;
     }
   }
 </style>
 
 <script is:inline>
-  // Inicialización de animaciones al hacer scroll
-  document.addEventListener('DOMContentLoaded', function() {
+  // Función para inicializar las animaciones de los proyectos
+  function initProjectsAnimations() {
+    // Animación del título
+    const sectionTitle = document.querySelector('.section-title');
+    if (sectionTitle) {
+      setTimeout(() => {
+        sectionTitle.classList.add('animate');
+      }, 300);
+    }
+
+    // Configuración del Intersection Observer para las tarjetas
     const projectCards = document.querySelectorAll('.project-card');
-    
-    const animateOnScroll = () => {
-      projectCards.forEach(card => {
-        const cardPosition = card.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.2;
-        
-        if (cardPosition < screenPosition) {
-          card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
-        }
-      });
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
     };
     
-    // Configuración inicial para animación
-    projectCards.forEach((card, index) => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
-      card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
-    });
+    const cardsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          const index = parseInt(card.dataset.index);
+          
+          setTimeout(() => {
+            card.classList.add('animate-in');
+          }, index * 100);
+          
+          cardsObserver.unobserve(card);
+        }
+      });
+    }, observerOptions);
     
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Ejecutar al cargar por si ya están visibles
-  });
+    // Observar todas las tarjetas
+    projectCards.forEach(card => cardsObserver.observe(card));
+
+    // Optimización del hover para móviles
+    function setupCardHoverEffects() {
+      projectCards.forEach(card => {
+        const image = card.querySelector('.project-image');
+        const techTags = card.querySelectorAll('.tech-tag');
+        
+        card.addEventListener('mouseenter', () => {
+          if (image) image.style.transform = 'scale(1.08)';
+          techTags.forEach((tag, i) => {
+            setTimeout(() => {
+              tag.style.transform = 'translateY(-3px)';
+            }, i * 50);
+          });
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          if (image) image.style.transform = 'scale(1)';
+          techTags.forEach(tag => tag.style.transform = 'translateY(0)');
+        });
+      });
+    }
+
+    setupCardHoverEffects();
+
+    // Smooth scroll para enlaces internos
+    if ('scrollBehavior' in document.documentElement.style) {
+      const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
+      smoothScrollLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          const targetId = link.getAttribute('href');
+          if (targetId && targetId !== '#') {
+            const target = document.querySelector(targetId);
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({
+                behavior: 'smooth'
+              });
+            }
+          }
+        });
+      });
+    }
+  }
+
+  // Inicialización condicional
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProjectsAnimations);
+  } else {
+    initProjectsAnimations();
+  }
 </script>

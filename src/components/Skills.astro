@@ -26,29 +26,39 @@ const skills = {
 ---
 
 <section id="habilidades" class="skills-section">
+  <!-- Partículas de fondo -->
+  <div class="particles-container">
+    {Array.from({length: 15}, (_, i) => (
+      <div class="particle" style={`--delay: ${i * 0.3}s; --duration: ${4 + Math.random() * 2}s`}></div>
+    ))}
+  </div>
+
   <div class="skills-container">
-    <h2 class="skills-title">Mis <span class="highlight">Habilidades</span></h2>
+    <h2 class="skills-title" id="skills-title">Mis <span class="highlight">Habilidades</span></h2>
+    
+    <!-- Línea de progreso horizontal -->
+    <div class="progress-line" id="progress-line"></div>
     
     <div class="skills-grid">
 
       <!-- Ciberseguridad -->
-      <div class="skill-category">
+      <div class="skill-category" data-category="cybersecurity">
         <div class="category-header">
           <i class="fa-brands fa-linux category-icon"></i>
           <h3 class="category-title">Ciberseguridad</h3>
         </div>
         <div class="skills-list">
-          {skills.cybersecurity.map((skill) => (
-            <div class="skill-item">
+          {skills.cybersecurity.map((skill, index) => (
+            <div class="skill-item" data-delay={index * 100}>
               <div class="skill-info">
-                <i class={skill.icon}></i>
+                <i class={skill.icon + " skill-icon"}></i>
                 <span class="skill-name">{skill.name}</span>
                 <span class="skill-percent">{skill.level}%</span>
               </div>
               <div class="skill-bar">
                 <div 
                   class="skill-progress" 
-                  style={`width: ${skill.level}%`}
+                  style={`width: 0%`}
                   data-level={skill.level}
                 ></div>
               </div>
@@ -58,23 +68,23 @@ const skills = {
       </div>
 
       <!-- Frontend -->
-      <div class="skill-category">
+      <div class="skill-category" data-category="frontend">
         <div class="category-header">
           <i class="fa-solid fa-code category-icon"></i>
           <h3 class="category-title">Frontend</h3>
         </div>
         <div class="skills-list">
-          {skills.frontend.map((skill) => (
-            <div class="skill-item">
+          {skills.frontend.map((skill, index) => (
+            <div class="skill-item" data-delay={index * 100}>
               <div class="skill-info">
-                <i class={skill.icon}></i>
+                <i class={skill.icon + " skill-icon"}></i>
                 <span class="skill-name">{skill.name}</span>
                 <span class="skill-percent">{skill.level}%</span>
               </div>
               <div class="skill-bar">
                 <div 
                   class="skill-progress" 
-                  style={`width: ${skill.level}%`}
+                  style={`width: 0%`}
                   data-level={skill.level}
                 ></div>
               </div>
@@ -84,23 +94,23 @@ const skills = {
       </div>
       
       <!-- Backend -->
-      <div class="skill-category">
+      <div class="skill-category" data-category="backend">
         <div class="category-header">
           <i class="fa-solid fa-gears category-icon"></i>
           <h3 class="category-title">Backend</h3>
         </div>
         <div class="skills-list">
-          {skills.backend.map((skill) => (
-            <div class="skill-item">
+          {skills.backend.map((skill, index) => (
+            <div class="skill-item" data-delay={index * 100}>
               <div class="skill-info">
-                <i class={skill.icon}></i>
+                <i class={skill.icon + " skill-icon"}></i>
                 <span class="skill-name">{skill.name}</span>
                 <span class="skill-percent">{skill.level}%</span>
               </div>
               <div class="skill-bar">
                 <div 
                   class="skill-progress" 
-                  style={`width: ${skill.level}%`}
+                  style={`width: 0%`}
                   data-level={skill.level}
                 ></div>
               </div>
@@ -137,6 +147,61 @@ const skills = {
     pointer-events: none;
   }
 
+  /* Partículas de fondo */
+  .particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: linear-gradient(45deg, #00ffff, #0099ff);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: floatUp var(--duration, 4s) linear infinite;
+    animation-delay: var(--delay, 0s);
+    left: calc(var(--random) * 100%);
+  }
+
+  .particle:nth-child(odd) {
+    left: calc(10% + 80% * var(--random, 0.5));
+    background: linear-gradient(45deg, #daa520, #ffd700);
+  }
+
+  .particle:nth-child(even) {
+    left: calc(20% + 60% * var(--random, 0.3));
+  }
+
+  .particle:nth-child(3n) {
+    left: calc(30% + 40% * var(--random, 0.7));
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(100vh) scale(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.6;
+      transform: translateY(90vh) scale(1);
+    }
+    90% {
+      opacity: 0.6;
+      transform: translateY(10vh) scale(1);
+    }
+    100% {
+      transform: translateY(-10vh) scale(0);
+      opacity: 0;
+    }
+  }
+
   .skills-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -148,12 +213,20 @@ const skills = {
     font-size: 2.8rem;
     font-weight: 800;
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     color: #e5e5e5;
     position: relative;
     display: inline-block;
     left: 50%;
     transform: translateX(-50%);
+    opacity: 0;
+    transform: translateX(-50%) translateY(30px);
+    transition: all 0.8s ease;
+  }
+
+  .skills-title.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
 
   .skills-title .highlight {
@@ -161,6 +234,40 @@ const skills = {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  /* Línea de progreso */
+  .progress-line {
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 2rem auto 4rem;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .progress-line::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #0066ff, #00ffff, #00ffff, #0066ff);
+    background-size: 200% 100%;
+    animation: progressFill 2s ease-out forwards, gradientShift 3s ease-in-out infinite;
+    border-radius: 2px;
+  }
+
+  @keyframes progressFill {
+    0% { width: 0; }
+    100% { width: 100%; }
+  }
+
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 
   .skills-grid {
@@ -175,13 +282,21 @@ const skills = {
     border-radius: 16px;
     border: 1px solid rgba(218, 165, 32, 0.15);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(40px);
+    perspective: 1000px;
+  }
+
+  .skill-category.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .skill-category:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(218, 165, 32, 0.2);
-    border-color: rgba(218, 165, 32, 0.3);
+    transform: translateY(-8px) rotateX(5deg);
+    box-shadow: 0 20px 50px rgba(0, 255, 255, 0.2);
+    border-color: rgba(0, 255, 255, 0.4);
   }
 
   .category-header {
@@ -203,6 +318,14 @@ const skills = {
     align-items: center;
     justify-content: center;
     border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .skill-category:hover .category-icon {
+    transform: rotate(360deg) scale(1.1);
+    background: rgba(0, 255, 255, 0.2);
+    color: #00ffff;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
   }
 
   .category-title {
@@ -210,6 +333,11 @@ const skills = {
     font-weight: 700;
     color: #FFD700;
     margin: 0;
+    transition: color 0.3s ease;
+  }
+
+  .skill-category:hover .category-title {
+    color: #00ffff;
   }
 
   .skills-list {
@@ -220,6 +348,18 @@ const skills = {
 
   .skill-item {
     margin-bottom: 0.5rem;
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    transition: all 0.6s ease;
+  }
+
+  .skill-item.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .skill-item:hover {
+    transform: translateX(5px);
   }
 
   .skill-info {
@@ -234,6 +374,12 @@ const skills = {
     color: #DAA520;
     width: 24px;
     text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .skill-item:hover .skill-icon {
+    color: #00ffff;
+    transform: scale(1.2) rotate(15deg);
   }
 
   .skill-name {
@@ -242,6 +388,11 @@ const skills = {
     color: #e5e5e5;
     font-weight: 600;
     font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+
+  .skill-item:hover .skill-name {
+    color: #ffffff;
   }
 
   .skill-percent {
@@ -250,6 +401,11 @@ const skills = {
     font-size: 0.9rem;
     min-width: 40px;
     text-align: right;
+    transition: color 0.3s ease;
+  }
+
+  .skill-item:hover .skill-percent {
+    color: #00ffff;
   }
 
   .skill-bar {
@@ -258,15 +414,23 @@ const skills = {
     border-radius: 4px;
     overflow: hidden;
     position: relative;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
   }
 
   .skill-progress {
     height: 100%;
     border-radius: 4px;
     position: relative;
-    background: linear-gradient(90deg, #B8860B, #DAA520, #FFD700);
+    background: linear-gradient(90deg, #0066ff, #00aaff, #00ffff);
+    background-size: 200% 100%;
     width: 0;
-    transition: width 1.5s ease-in-out;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: gradientMove 3s ease-in-out infinite;
+  }
+
+  @keyframes gradientMove {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 
   .skill-progress::after {
@@ -277,15 +441,44 @@ const skills = {
     right: 0;
     bottom: 0;
     background: linear-gradient(90deg, 
-      rgba(255,255,255,0.1) 0%, 
+      rgba(255,255,255,0) 0%, 
       rgba(255,255,255,0.3) 50%, 
-      rgba(255,255,255,0.1) 100%);
-    opacity: 0.3;
+      rgba(255,255,255,0) 100%);
+    opacity: 0.4;
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* Bounce animation */
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: translateY(40px) scale(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(-10px) scale(1.05);
+    }
+    70% {
+      transform: translateY(5px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .skill-item.bounce {
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   @media (prefers-reduced-motion: no-preference) {
     .skill-progress {
-      animation: none;
+      animation: gradientMove 3s ease-in-out infinite;
     }
   }
 
@@ -302,28 +495,93 @@ const skills = {
     .category-header {
       margin-bottom: 1.5rem;
     }
+
+    .skill-category:hover {
+      transform: translateY(-5px);
+    }
   }
 </style>
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function() {
-    const skillsSection = document.querySelector('.skills-section');
-    const skillBars = document.querySelectorAll('.skill-progress');
-    
-    const animateSkills = () => {
+    // Intersection Observer para animaciones
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Observar título
+    const skillsTitle = document.getElementById('skills-title');
+    if (skillsTitle) {
+      observer.observe(skillsTitle);
+    }
+
+    // Observar línea de progreso
+    const progressLine = document.getElementById('progress-line');
+    if (progressLine) {
+      observer.observe(progressLine);
+    }
+
+    // Observar categorías con delay
+    const categories = document.querySelectorAll('.skill-category');
+    categories.forEach((category, index) => {
+      setTimeout(() => {
+        observer.observe(category);
+      }, index * 200);
+    });
+
+    // Función para animar skills individualmente
+    function animateSkills() {
+      const skillsSection = document.querySelector('.skills-section');
       const sectionPosition = skillsSection.getBoundingClientRect().top;
-      const screenPosition = window.innerHeight / 1.3;
+      const screenPosition = window.innerHeight / 1.2;
       
       if (sectionPosition < screenPosition) {
-        skillBars.forEach(bar => {
-          const level = bar.getAttribute('data-level');
-          bar.style.width = level + '%';
+        // Animar barras de progreso
+        const skillBars = document.querySelectorAll('.skill-progress');
+        skillBars.forEach((bar, index) => {
+          setTimeout(() => {
+            const level = bar.getAttribute('data-level');
+            bar.style.width = level + '%';
+          }, index * 100);
         });
+
+        // Animar skill items con staggered reveal
+        const skillItems = document.querySelectorAll('.skill-item');
+        skillItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add('visible', 'bounce');
+          }, index * 150);
+        });
+
         window.removeEventListener('scroll', animateSkills);
       }
-    };
+    }
     
+    // Event listeners
     window.addEventListener('scroll', animateSkills);
-    animateSkills();
+    animateSkills(); // Ejecutar una vez al cargar
+
+    // Efecto parallax para partículas
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const particles = document.querySelectorAll('.particle');
+      
+      particles.forEach((particle, index) => {
+        const speed = 0.1 + (index % 3) * 0.05;
+        particle.style.transform = `translateY(${scrolled * speed}px)`;
+      });
+    });
+
+    // Asignar posiciones random a partículas
+    document.querySelectorAll('.particle').forEach(particle => {
+      particle.style.setProperty('--random', Math.random());
+    });
   });
 </script>

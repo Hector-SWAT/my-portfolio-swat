@@ -3,331 +3,494 @@
 ---
 
 <section id="contacto" class="contact-section">
-  <div class="contact-container">
-    <h2 class="section-title">Contáctame</h2>
-    
-    <div class="contact-wrapper">
-      <div class="contact-content">
-        <div class="contact-info">
-          <h3 class="contact-heading">¡Trabajemos <span class="highlight">juntos!</span></h3>
-          <p class="contact-description">
-            Estoy siempre interesado en nuevos proyectos y oportunidades. 
-            Si tienes una idea o simplemente quieres saludar, no dudes en contactarme.
-          </p>
-          
-          <div class="contact-methods">
-            <div class="contact-item">
-              <div class="contact-icon">
-                <i class="fas fa-envelope"></i>
-              </div>
-              <div class="contact-details">
-                <span class="contact-label">Email</span>
-                <span class="contact-value">hectorhernadez51@gmail.com</span>
-              </div>
+    <!-- Canvas para el efecto Matrix -->
+    <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
+
+    <div class="contact-container">
+        <h2 class="section-title">Contáctame</h2>
+
+        <div class="contact-wrapper">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3 class="contact-heading">
+                        ¡Trabajemos <span class="highlight">juntos!</span>
+                    </h3>
+                    <p class="contact-description">
+                        Estoy siempre interesado en nuevos proyectos y
+                        oportunidades. Si tienes una idea o simplemente quieres
+                        saludar, no dudes en contactarme.
+                    </p>
+
+                    <div class="contact-methods">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <span class="contact-label">Email</span>
+                                <span class="contact-value">hectorhernadez51@gmail.com</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <span class="contact-label">Teléfono</span>
+                                <span class="contact-value">+52 5591 8821 95</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <span class="contact-label">Ubicación</span>
+                                <span class="contact-value">México</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                placeholder="Tu nombre"
+                                class="form-input"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <input
+                                type="email"
+                                placeholder="Tu email"
+                                class="form-input"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                placeholder="Asunto"
+                                class="form-input"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <textarea
+                                placeholder="Tu mensaje"
+                                class="form-textarea"
+                                rows="5"
+                                required
+                            ></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">
+                            <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
             </div>
-            
-            <div class="contact-item">
-              <div class="contact-icon">
-                <i class="fas fa-phone-alt"></i>
-              </div>
-              <div class="contact-details">
-                <span class="contact-label">Teléfono</span>
-                <span class="contact-value">+52 5591 8821 95</span>
-              </div>
-            </div>
-            
-            <div class="contact-item">
-              <div class="contact-icon">
-                <i class="fas fa-map-marker-alt"></i>
-              </div>
-              <div class="contact-details">
-                <span class="contact-label">Ubicación</span>
-                <span class="contact-value">México</span>
-              </div>
-            </div>
-          </div>
         </div>
-        
-        <div class="contact-form-container">
-          <form class="contact-form" id="contactForm">
-            <div class="form-group">
-              <input 
-                type="text" 
-                placeholder="Tu nombre" 
-                class="form-input" 
-                required
-              >
-            </div>
-            <div class="form-group">
-              <input 
-                type="email" 
-                placeholder="Tu email" 
-                class="form-input" 
-                required
-              >
-            </div>
-            <div class="form-group">
-              <input 
-                type="text" 
-                placeholder="Asunto" 
-                class="form-input" 
-                required
-              >
-            </div>
-            <div class="form-group">
-              <textarea 
-                placeholder="Tu mensaje" 
-                class="form-textarea" 
-                rows="5" 
-                required
-              ></textarea>
-            </div>
-            <button type="submit" class="form-submit">
-              <i class="fas fa-paper-plane"></i> Enviar Mensaje
-            </button>
-          </form>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
 
 <style>
-  .contact-section {
-    padding: 6rem 1rem;
-    background: linear-gradient(
-      135deg, 
-      rgba(15, 15, 15, 0.95) 0%, 
-      rgba(26, 26, 26, 0.98) 100%
-    );
-    position: relative;
-  }
-
-  .contact-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-      radial-gradient(circle at 20% 30%, rgba(218, 165, 32, 0.05) 0%, transparent 40%),
-      radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.03) 0%, transparent 40%);
-    pointer-events: none;
-  }
-
-  .contact-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-
-  .section-title {
-    font-size: 2.8rem;
-    font-weight: 800;
-    text-align: center;
-    margin-bottom: 4rem;
-    color: #e5e5e5;
-  }
-
-  .contact-wrapper {
-    display: flex;
-    justify-content: center;
-  }
-
-  .contact-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    max-width: 1000px;
-    width: 100%;
-  }
-
-  @media (min-width: 992px) {
-    .contact-content {
-      grid-template-columns: 1fr 1fr;
+    .contact-section {
+        position: relative;
+        padding: 6rem 1rem;
+        background: linear-gradient(
+            135deg,
+            rgba(15, 15, 15, 0.95) 0%,
+            rgba(26, 26, 26, 0.98) 100%
+        );
+        overflow: hidden;
     }
-  }
 
-  .contact-info {
-    color: #e5e5e5;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+    .matrix-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0.15;
+        pointer-events: none;
+    }
 
-  .contact-heading {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: #e5e5e5;
-    line-height: 1.3;
-  }
+    .contact-container {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 
-  .contact-heading .highlight {
-    background: linear-gradient(45deg, #FFD700, #DAA520);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+    .contact-form {
+        background: rgba(26, 26, 26, 0.9);
+        backdrop-filter: blur(2px);
+    }
 
-  .contact-description {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: rgba(229, 229, 229, 0.8);
-    margin-bottom: 2.5rem;
-  }
-
-  .contact-methods {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 1.2rem;
-    background: rgba(26, 26, 26, 0.6);
-    border-radius: 12px;
-    border: 1px solid rgba(218, 165, 32, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .contact-item:hover {
-    transform: translateX(5px);
-    box-shadow: 0 5px 15px rgba(218, 165, 32, 0.1);
-    border-color: rgba(218, 165, 32, 0.3);
-  }
-
-  .contact-icon {
-    font-size: 1.3rem;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(218, 165, 32, 0.15);
-    border-radius: 50%;
-    color: #FFD700;
-    flex-shrink: 0;
-  }
-
-  .contact-details {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .contact-label {
-    font-weight: 600;
-    color: #DAA520;
-    font-size: 0.9rem;
-    margin-bottom: 0.3rem;
-  }
-
-  .contact-value {
-    color: #e5e5e5;
-    font-size: 1.05rem;
-  }
-
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    background: rgba(26, 26, 26, 0.7);
-    padding: 2rem;
-    border-radius: 16px;
-    border: 1px solid rgba(218, 165, 32, 0.15);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .form-input,
-  .form-textarea {
-    padding: 1rem;
-    background: rgba(15, 15, 15, 0.8);
-    border: 1px solid rgba(218, 165, 32, 0.2);
-    border-radius: 8px;
-    color: #e5e5e5;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .form-input:focus,
-  .form-textarea:focus {
-    outline: none;
-    border-color: #DAA520;
-    box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.2);
-  }
-
-  .form-input::placeholder,
-  .form-textarea::placeholder {
-    color: rgba(229, 229, 229, 0.5);
-  }
-
-  .form-textarea {
-    resize: vertical;
-    min-height: 150px;
-  }
-
-  .form-submit {
-    padding: 1rem 2rem;
-    background: linear-gradient(45deg, #DAA520, #FFD700);
-    color: #1a1a1a;
-    border: none;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.8rem;
-    margin-top: 0.5rem;
-  }
-
-  .form-submit:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(218, 165, 32, 0.4);
-    background: linear-gradient(45deg, #FFD700, #DAA520);
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
     .section-title {
-      font-size: 2.2rem;
-      margin-bottom: 3rem;
+        font-size: 2.8rem;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 4rem;
+        color: #e5e5e5;
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+            opacity 0.8s ease,
+            transform 0.8s ease;
     }
-    
+
+    .section-title.animate {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .contact-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    .contact-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        max-width: 1000px;
+        width: 100%;
+    }
+
+    @media (min-width: 992px) {
+        .contact-content {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .contact-info {
+        color: #e5e5e5;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
     .contact-heading {
-      font-size: 1.8rem;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #e5e5e5;
+        line-height: 1.3;
     }
-    
+
+    .contact-heading .highlight {
+        background: linear-gradient(45deg, #FFD700, #DAA520);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .contact-description {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: rgba(229, 229, 229, 0.8);
+        margin-bottom: 2.5rem;
+    }
+
+    .contact-methods {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
     .contact-item {
-      padding: 1rem;
-      gap: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1.2rem;
+        background: rgba(26, 26, 26, 0.6);
+        border-radius: 12px;
+        border: 1px solid rgba(218, 165, 32, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    
+
+    .contact-item:hover {
+        transform: translateX(5px);
+        box-shadow: 0 5px 15px rgba(218, 165, 32, 0.1);
+        border-color: rgba(218, 165, 32, 0.3);
+    }
+
     .contact-icon {
-      width: 45px;
-      height: 45px;
-      font-size: 1.1rem;
+        font-size: 1.3rem;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(218, 165, 32, 0.15);
+        border-radius: 50%;
+        color: #FFD700;
+        flex-shrink: 0;
     }
-  }
+
+    .contact-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact-label {
+        font-weight: 600;
+        color: #DAA520;
+        font-size: 0.9rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .contact-value {
+        color: #e5e5e5;
+        font-size: 1.05rem;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .social-icon {
+        color: #DAA520;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: rgba(26, 26, 26, 0.7);
+        border: 1px solid rgba(218, 165, 32, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        background: rgba(218, 165, 32, 0.2);
+        transform: translateY(-3px);
+    }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        background: rgba(26, 26, 26, 0.7);
+        padding: 2rem;
+        border-radius: 16px;
+        border: 1px solid rgba(218, 165, 32, 0.15);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-input,
+    .form-textarea {
+        padding: 1rem;
+        background: rgba(15, 15, 15, 0.8);
+        border: 1px solid rgba(218, 165, 32, 0.2);
+        border-radius: 8px;
+        color: #e5e5e5;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+        outline: none;
+        border-color: #4a8cff;
+        box-shadow: 0 0 0 3px rgba(74, 140, 255, 0.3);
+    }
+
+    .form-textarea {
+        resize: vertical;
+        min-height: 150px;
+    }
+
+    .form-submit {
+        padding: 1rem 2rem;
+        background: linear-gradient(45deg, #DAA520, #FFD700);
+        color: #1a1a1a;
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+        margin-top: 0.5rem;
+    }
+
+    .form-submit:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(218, 165, 32, 0.4);
+        background: linear-gradient(45deg, #FFD700, #DAA520);
+    }
+
+    /* Animaciones */
+    @keyframes input-focus {
+        0% { box-shadow: 0 0 0 3px rgba(74, 140, 255, 0.3); }
+        100% { box-shadow: 0 0 0 5px rgba(74, 140, 255, 0.1); }
+    }
+
+    @keyframes ripple {
+        0% { transform: scale(0, 0); opacity: 1; }
+        100% { transform: scale(20, 20); opacity: 0; }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .contact-heading {
+            font-size: 1.8rem;
+        }
+        
+        .contact-item {
+            padding: 1rem;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            font-size: 1.1rem;
+        }
+    }
 </style>
 
 <script is:inline>
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    // Aquí puedes añadir el código para enviar el formulario
-    alert('Mensaje enviado con éxito. ¡Gracias por contactarme!');
-    this.reset();
-  });
+    // Efecto Matrix con solo 1 y 0
+    document.addEventListener('DOMContentLoaded', function() {
+        const canvas = document.getElementById('matrixCanvas');
+        if (!canvas) return;
+        
+        // Configuración inicial
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        
+        const ctx = canvas.getContext('2d');
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const rainDrops = [];
+        
+        // Inicializar gotas de lluvia
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = Math.random() * -canvas.height;
+        }
+        
+        function drawMatrixEffect() {
+            // Fondo semi-transparente
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.09)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Color CIAN matrix (puedes cambiarlo)
+            ctx.fillStyle = '#40D7FF';
+            ctx.font = `bold ${fontSize}px monospace`;
+            
+            // Dibujar caracteres
+            for (let i = 0; i < rainDrops.length; i++) {
+                // Solo 1 y 0
+                const text = Math.random() > 0.5 ? '1' : '0';
+                const y = rainDrops[i] * fontSize;
+                
+                ctx.fillText(text, i * fontSize, y);
+                
+                // Aumenta el número 0.975 para hacerlo más lento, disminúyelo para más rápido
+                // Reiniciar gota al llegar al fondo
+                if (y > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        }
+        
+        // Control de animación
+        let animationId;
+        function animate() {
+            drawMatrixEffect();
+            animationId = requestAnimationFrame(animate);
+        }
+        
+        // Iniciar animación
+        animate();
+        
+        // Redimensionamiento
+        window.addEventListener('resize', function() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        });
+        
+        // Limpieza
+        window.addEventListener('beforeunload', function() {
+            cancelAnimationFrame(animationId);
+        });
+    });
+
+    // Animaciones de entrada
+    document.addEventListener('DOMContentLoaded', function() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // Observar elementos
+        document.querySelectorAll('.section-title, .contact-heading, .contact-description, .contact-item, .social-icons, .form-group').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Animación para íconos sociales
+        const socialIcons = document.querySelector('.social-icons');
+        if (socialIcons) {
+            socialIcons.querySelectorAll('.social-icon').forEach((icon, index) => {
+                icon.style.transitionDelay = `${index * 0.1}s`;
+            });
+        }
+        
+        // Efecto ripple para el botón
+        const submitBtn = document.querySelector('.form-submit');
+        if (submitBtn) {
+            submitBtn.addEventListener('click', function() {
+                this.classList.add('clicked');
+                setTimeout(() => this.classList.remove('clicked'), 1000);
+            });
+        }
+    });
 </script>
