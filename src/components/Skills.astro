@@ -160,12 +160,12 @@ const skills = {
 
   .particle {
     position: absolute;
-    width: 4px;
-    height: 4px;
+    width: 3px;
+    height: 3px;
     background: linear-gradient(45deg, #00ffff, #0099ff);
     border-radius: 50%;
-    opacity: 0.6;
-    animation: floatUp var(--duration, 4s) linear infinite;
+    opacity: 0.3;
+    animation: floatUp var(--duration, 8s) linear infinite;
     animation-delay: var(--delay, 0s);
     left: calc(var(--random) * 100%);
   }
@@ -189,11 +189,11 @@ const skills = {
       opacity: 0;
     }
     10% {
-      opacity: 0.6;
+      opacity: 0.4;
       transform: translateY(90vh) scale(1);
     }
     90% {
-      opacity: 0.6;
+      opacity: 0.4;
       transform: translateY(10vh) scale(1);
     }
     100% {
@@ -221,7 +221,7 @@ const skills = {
     transform: translateX(-50%);
     opacity: 0;
     transform: translateX(-50%) translateY(30px);
-    transition: all 0.8s ease;
+    transition: all 1.5s ease;
   }
 
   .skills-title.visible {
